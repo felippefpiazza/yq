@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   def restrict_access
     (key = ApiKey.where(access_token: request.env["HTTP_TOKEN"], 
                         revoked: false, 
-                        device_signature: request.env["HTTP_DEVICE_SIGNATURE"])).present? ? (@user = key.first.user) : (head :unauthorized) 
+                        device_signature: request.env["HTTP_DEVICE"])).present? ? (@user = key.first.user) : (head :unauthorized) 
   end
 
 

@@ -72,7 +72,8 @@ class Api::UserController < ApplicationController
   end
   
   def nothing
-    send_response(@user.as_json("full"))
+    response = {:data_received => {:name => params[:name], :password => params[:password]}, :error => {:response => false, :error_msgs => []}}
+    send_response(response)
   end
   
   
