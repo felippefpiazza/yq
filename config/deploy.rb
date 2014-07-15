@@ -1,45 +1,22 @@
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
+#General Configuration
 set :application, 'yq'
-set :repository, 'git@github.com:felippefpiazza/yq.git'
-set :base_path, '/var/www'
-role :web, "104.131.233.143"
-role :app, "104.131.233.143"
-role :db, "104.131.233.143", :primary => true
-
-#####################################################################
-#### normally two deployment environments ###########################
-#####################################################################
-
-set :targets, {
-  teste:      'test',
-  production: 'prod'
-}
-
-targets.each do |target, app|
-  task target.to_sym do
-    set :app_namespace, "#{application}_#{app}"
-    set :deploy_to, "#{base_path}/#{app_namespace}"
-  end
-end
-
-#####################################################################
-#### there shouldnt be any need to change things below this line ####
-#####################################################################
-
-default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
-set :rvm_ruby_string, '2.1.2'
-set :rvm_type, :system 
+set :deploy_user, 'felippe'
 set :scm, :git
-set :deploy_via, :export
-set :use_sudo, false
-set :user, "felippe"
+set :repo_url, 'git@github.com:felippefpiazza/yq.git'
+
+#Setup RVM
+#set :rbenv_type, :system
+#set :rbenv_ruby, '2.1.1'
+#set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+#set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+
+#Saving some space on the server
+set :keep_releases, 5
 
 
-#set :rails_env, "production"
-#set :keep_releases, 5
 
 
 

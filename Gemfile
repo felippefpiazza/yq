@@ -33,6 +33,15 @@ gem 'spring', '~> 1.1.2',        group: :development
 # Use Capistrano for deployment
 gem 'capistrano', '3.2.1', group: :development
 
+# rails specific capistrano funcitons
+gem 'capistrano-rails', '1.1.1'
+
+# integrate bundler with capistrano
+gem 'capistrano-bundler', '1.1.2'
+
+# if you are using RBENV
+gem 'capistrano-rbenv', "~> 2.0"
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
